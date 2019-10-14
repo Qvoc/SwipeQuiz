@@ -79,14 +79,14 @@ class MainActivity : AppCompatActivity()
                 )
                 {
                     Snackbar.make(
-                        rvQuestions, "Correct! " + "The answer was: " + target.answer,
+                        rvQuestions, getString(R.string.correct_answer, target.answer.toString()),
                         Snackbar.LENGTH_SHORT
                     ).show()
                 }
                 else
                 {
                     Snackbar.make(
-                        rvQuestions, "Incorrect! " + "The answer was: " + target.answer,
+                        rvQuestions, getString(R.string.incorrect_answer, target.answer.toString()),
                         Snackbar.LENGTH_SHORT
                     ).show()
                 }

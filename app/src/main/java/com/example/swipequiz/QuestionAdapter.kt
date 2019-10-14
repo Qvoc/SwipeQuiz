@@ -1,17 +1,23 @@
 package com.example.swipequiz
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 
 class QuestionAdapter(private val questions: List<Question>) :
     RecyclerView.Adapter<QuestionAdapter.ViewHolder>()
 {
 
+    lateinit var context: Context
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuestionAdapter.ViewHolder
     {
+        context = parent.context
+
         return ViewHolder(
 
             LayoutInflater.from(parent.context).inflate(
@@ -41,6 +47,14 @@ class QuestionAdapter(private val questions: List<Question>) :
         fun bind(question: Question)
         {
             tvQuestion.text = question.question
+
+            tvQuestion.setOnClickListener {
+                Snackbar.make(
+                    itemView,
+                    context.resources.getString(R.string.answer, question.answer.toString()),
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 }
